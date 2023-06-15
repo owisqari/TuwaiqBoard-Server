@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 const studentSchema = new Schema(
   {
+    bootcamp: {
+      type: Schema.Types.ObjectId,
+      ref: "bootcamp",
+    },
     username: {
       type: String,
       required: true,
@@ -11,6 +15,12 @@ const studentSchema = new Schema(
       type: String,
       required: true,
     },
+    homeworksId: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "homework",
+      },
+    ],
   },
   {
     timestamps: true,
