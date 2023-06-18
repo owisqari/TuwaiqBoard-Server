@@ -21,16 +21,16 @@ const homeworkSchema = new Schema(
         ref: "student",
       },
     ],
+    submtionId: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "submitHW",
+      },
+    ],
     status: {
       type: String,
     },
-    url: [
-      {
-        type: String,
-      },
-    ],
   },
-
   {
     timestamps: true,
   }

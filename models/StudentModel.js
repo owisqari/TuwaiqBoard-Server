@@ -7,6 +7,10 @@ const studentSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "bootcamp",
     },
+    fullName: {
+      type: String,
+      required: true,
+    },
     username: {
       type: String,
       required: true,

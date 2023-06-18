@@ -9,6 +9,10 @@ const instructorSchema = new Schema(
         ref: "bootcamp",
       },
     ],
+    fullName: {
+      type: String,
+      required: true,
+    },
     username: {
       type: String,
       required: true,
@@ -16,7 +20,6 @@ const instructorSchema = new Schema(
     password: {
       type: String,
       required: true,
-      select: false,
     },
     homeworks: [
       {
