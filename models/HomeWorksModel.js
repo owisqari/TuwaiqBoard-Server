@@ -11,6 +11,11 @@ const homeworkSchema = new Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+      required: true,
+    },
+
     instructorId: {
       type: Schema.Types.ObjectId,
       ref: "instructor",
@@ -27,6 +32,9 @@ const homeworkSchema = new Schema(
         ref: "submitHW",
       },
     ],
+    deadline: {
+      type: Date,
+    },
     status: {
       type: String,
     },

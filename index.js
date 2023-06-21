@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const studentRouter = require("./routers/studentRouter");
 const instructorRouter = require("./routers/instructorRouter");
+const adminRouter = require("./routers/adminRouter");
 const cors = require("cors");
 require("dotenv").config();
 
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/admin", adminRouter);
 app.use("/student", studentRouter);
 app.use("/instructor", instructorRouter);
 

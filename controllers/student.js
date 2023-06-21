@@ -11,6 +11,7 @@ const saltRounds = Number(process.env.SALT_ROUNDS);
 // register a new student account
 exports.register = async (req, res) => {
   const fullName = req.body.fullName;
+  const email = req.body.email;
   const username = req.body.username;
   const password = req.body.password;
 
@@ -30,6 +31,7 @@ exports.register = async (req, res) => {
     // Create a new user
     const savedUser = await studentDB.create({
       username: username,
+      email: email,
       password: hash,
       fullName: fullName,
     });
@@ -63,6 +65,7 @@ exports.login = async (req, res) => {
       const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
         expiresIn: "1h",
       });
+
       res.status(200).json({ token: token });
     } else {
       res.status(403).json({ message: "Invalid password" });

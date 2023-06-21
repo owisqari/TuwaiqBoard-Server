@@ -73,7 +73,7 @@ exports.login = async (req, res) => {
 
 exports.getAnnauncements = async (req, res) => {
   try {
-    const annauncements = await annauncementsDB.find();
+    const annauncements = await annauncementsDB.find().populate("instructorId");
     res.status(200).json({ annauncements });
   } catch (err) {
     console.log(err);
@@ -115,7 +115,9 @@ exports.deleteAnnauncements = async (req, res) => {
 
 exports.getCourseMaterial = async (req, res) => {
   try {
-    const courseMaterial = await courseMaterialDB.find();
+    const courseMaterial = await courseMaterialDB
+      .find()
+      .populate("instructorId");
     res.status(200).json({ courseMaterial });
   } catch (err) {
     console.log(err);
@@ -166,14 +168,18 @@ exports.getHomework = async (req, res) => {
 exports.createHomework = async (req, res) => {
   const title = req.body.title;
   const status = req.body.status;
+  const description = req.body.description;
   const students = await studentDB.find();
   const studentId = students.map((student) => student._id);
+  const deadline = req.body.deadline;
 
   try {
     const homework = await homeworkDB.create({
       title: title,
       status: status,
+      description: description,
       studentId: studentId,
+      deadline: deadline,
       instructorId: res.locals.userId,
     });
     await instructorDB.findOneAndUpdate(

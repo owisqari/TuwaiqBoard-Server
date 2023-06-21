@@ -11,6 +11,9 @@ const studentSchema = new Schema(
       type: String,
       required: true,
     },
+    email: {
+      type: String,
+    },
     username: {
       type: String,
       required: true,
